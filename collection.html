@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Town - Collections</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6B435B',
+                        secondary: '#A48296'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #6B435B;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .product-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .product-card .add-to-cart {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover .add-to-cart {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 4px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #6B435B;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .size-option input[type="radio"] {
+            display: none;
+        }
+
+        .size-option input[type="radio"]+label {
+            cursor: pointer;
+            padding: 6px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .size-option input[type="radio"]:checked+label {
+            background: #6B435B;
+            color: white;
+            border-color: #6B435B;
+        }
+    </style>
+</head>
+
+<body class="font-poppins">
+    <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-['Pacifico'] text-primary">brandtown</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" data-readdy="true" class="nav-link text-gray-700 hover:text-primary">Home</a>
+                <a href="collection.html" class="nav-link text-primary">Shop</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-primary">About</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-primary">Contact</a>
+            </div>
+            <button class="md:hidden w-10 h-10 flex items-center justify-center">
+                <i class="ri-menu-line text-xl"></i>
+            </button>
+        </div>
+    </nav>
+    <main class="pt-24 pb-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row gap-8">
+                <aside class="w-full md:w-64 space-y-8">
+                    <div>
+                        <h3 class="font-medium text-lg mb-4">Categories</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="category" value="all" checked class="hidden">
+                                <span
+                                    class="w-4 h-4 border border-gray-300 rounded-full flex items-center justify-center">
+                                    <span class="w-2 h-2 bg-primary rounded-full hidden checked:block"></span>
+                                </span>
+                                <span>All</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="category" value="kurti" class="hidden">
+                                <span
+                                    class="w-4 h-4 border border-gray-300 rounded-full flex items-center justify-center">
+                                    <span class="w-2 h-2 bg-primary rounded-full hidden checked:block"></span>
+                                </span>
+                                <span>Kurti</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="category" value="saree" class="hidden">
+                                <span
+                                    class="w-4 h-4 border border-gray-300 rounded-full flex items-center justify-center">
+                                    <span class="w-2 h-2 bg-primary rounded-full hidden checked:block"></span>
+                                </span>
+                                <span>Saree</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="category" value="dress" class="hidden">
+                                <span
+                                    class="w-4 h-4 border border-gray-300 rounded-full flex items-center justify-center">
+                                    <span class="w-2 h-2 bg-primary rounded-full hidden checked:block"></span>
+                                </span>
+                                <span>Dress</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-lg mb-4">Price Range</h3>
+                        <input type="range" min="0" max="500" value="250" class="w-full mb-4">
+                        <div class="flex justify-between text-sm text-gray-600">
+                            <span>$0</span>
+                            <span>$500</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-lg mb-4">Size</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <div class="size-option">
+                                <input type="radio" name="size" id="xs" value="xs">
+                                <label for="xs">XS</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" name="size" id="s" value="s">
+                                <label for="s">S</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" name="size" id="m" value="m">
+                                <label for="m">M</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" name="size" id="l" value="l">
+                                <label for="l">L</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" name="size" id="xl" value="xl">
+                                <label for="xl">XL</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="!rounded-button w-full bg-gray-100 hover:bg-gray-200 py-2 text-sm transition-colors">
+                        Clear Filters
+                    </button>
+                </aside>
+                <div class="flex-1">
+                    <div class="flex justify-between items-center mb-8">
+                        <h2 class="font-playfair text-2xl font-medium">All Products</h2>
+                        <div class="relative">
+                            <select
+                                class="appearance-none bg-white border border-gray-200 rounded px-4 py-2 pr-8 focus:outline-none focus:border-primary">
+                                <option>Sort by: Featured</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Newest First</option>
+                            </select>
+                            <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                                <i class="ri-arrow-down-s-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm">
+                            <div class="h-80 relative"
+                                style="background-image: url('https://readdy.ai/api/search-image?query=elegant%20cotton%20kurti%20dress%20on%20mannequin%20with%20intricate%20embroidery%20details%2C%20premium%20fabric%20quality%2C%20soft%20natural%20lighting%2C%20clean%20minimalist%20background%2C%20professional%20product%20photography&width=600&height=800&seq=6&orientation=portrait'); background-size: cover; background-position: center;">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-playfair text-lg font-medium">Embroidered Cotton Kurti</h3>
+                                <p class="text-gray-600 mt-1">$89.99</p>
+                                <button
+                                    class="add-to-cart !rounded-button w-full bg-primary text-white py-2 mt-4 text-sm hover:bg-primary/90 transition-colors">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm">
+                            <div class="h-80 relative"
+                                style="background-image: url('https://readdy.ai/api/search-image?query=elegant%20silk%20saree%20with%20gold%20border%20details%20on%20mannequin%2C%20premium%20fabric%20quality%2C%20soft%20natural%20lighting%2C%20clean%20minimalist%20background%2C%20professional%20product%20photography&width=600&height=800&seq=7&orientation=portrait'); background-size: cover; background-position: center;">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-playfair text-lg font-medium">Silk Border Saree</h3>
+                                <p class="text-gray-600 mt-1">$159.99</p>
+                                <button
+                                    class="add-to-cart !rounded-button w-full bg-primary text-white py-2 mt-4 text-sm hover:bg-primary/90 transition-colors">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm">
+                            <div class="h-80 relative"
+                                style="background-image: url('https://readdy.ai/api/search-image?query=elegant%20cotton%20maxi%20dress%20on%20mannequin%20with%20floral%20print%2C%20premium%20fabric%20quality%2C%20soft%20natural%20lighting%2C%20clean%20minimalist%20background%2C%20professional%20product%20photography&width=600&height=800&seq=8&orientation=portrait'); background-size: cover; background-position: center;">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-playfair text-lg font-medium">Floral Maxi Dress</h3>
+                                <p class="text-gray-600 mt-1">$129.99</p>
+                                <button
+                                    class="add-to-cart !rounded-button w-full bg-primary text-white py-2 mt-4 text-sm hover:bg-primary/90 transition-colors">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm">
+                            <div class="h-80 relative"
+                                style="background-image: url('https://readdy.ai/api/search-image?query=elegant%20cotton%20anarkali%20kurti%20on%20mannequin%20with%20traditional%20prints%2C%20premium%20fabric%20quality%2C%20soft%20natural%20lighting%2C%20clean%20minimalist%20background%2C%20professional%20product%20photography&width=600&height=800&seq=9&orientation=portrait'); background-size: cover; background-position: center;">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-playfair text-lg font-medium">Printed Anarkali Kurti</h3>
+                                <p class="text-gray-600 mt-1">$99.99</p>
+                                <button
+                                    class="add-to-cart !rounded-button w-full bg-primary text-white py-2 mt-4 text-sm hover:bg-primary/90 transition-colors">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm">
+                            <div class="h-80 relative"
+                                style="background-image: url('https://readdy.ai/api/search-image?query=elegant%20georgette%20saree%20with%20sequin%20work%20on%20mannequin%2C%20premium%20fabric%20quality%2C%20soft%20natural%20lighting%2C%20clean%20minimalist%20background%2C%20professional%20product%20photography&width=600&height=800&seq=10&orientation=portrait'); background-size: cover; background-position: center;">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-playfair text-lg font-medium">Sequin Work Saree</h3>
+                                <p class="text-gray-600 mt-1">$179.99</p>
+                                <button
+                                    class="add-to-cart !rounded-button w-full bg-primary text-white py-2 mt-4 text-sm hover:bg-primary/90 transition-colors">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm">
+                            <div class="h-80 relative"
+                                style="background-image: url('https://readdy.ai/api/search-image?query=elegant%20cotton%20wrap%20dress%20on%20mannequin%20with%20minimalist%20design%2C%20premium%20fabric%20quality%2C%20soft%20natural%20lighting%2C%20clean%20minimalist%20background%2C%20professional%20product%20photography&width=600&height=800&seq=11&orientation=portrait'); background-size: cover; background-position: center;">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-playfair text-lg font-medium">Cotton Wrap Dress</h3>
+                                <p class="text-gray-600 mt-1">$119.99</p>
+                                <button
+                                    class="add-to-cart !rounded-button w-full bg-primary text-white py-2 mt-4 text-sm hover:bg-primary/90 transition-colors">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm">
+                            <div class="h-80 relative"
+                                style="background-image: url('https://readdy.ai/api/search-image?query=elegant%20cotton%20straight%20kurti%20with%20mirror%20work%20on%20mannequin%2C%20premium%20fabric%20quality%2C%20soft%20natural%20lighting%2C%20clean%20minimalist%20background%2C%20professional%20product%20photography&width=600&height=800&seq=12&orientation=portrait'); background-size: cover; background-position: center;">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-playfair text-lg font-medium">Mirror Work Kurti</h3>
+                                <p class="text-gray-600 mt-1">$109.99</p>
+                                <button
+                                    class="add-to-cart !rounded-button w-full bg-primary text-white py-2 mt-4 text-sm hover:bg-primary/90 transition-colors">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm">
+                            <div class="h-80 relative"
+                                style="background-image: url('https://readdy.ai/api/search-image?query=luxury%20silk%20saree%20draped%20on%20elegant%20mannequin%2C%20rich%20zari%20embroidery%20border%2C%20premium%20fabric%20quality%2C%20professional%20studio%20lighting%2C%20clean%20white%20background%2C%20high%20end%20fashion%20product%20photography%2C%204k%20quality&width=600&height=800&seq=14&orientation=portrait'); background-size: cover; background-position: center;">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-playfair text-lg font-medium">Banarasi Silk Saree</h3>
+                                <p class="text-gray-600 mt-1">$199.99</p>
+                                <button
+                                    class="add-to-cart !rounded-button w-full bg-primary text-white py-2 mt-4 text-sm hover:bg-primary/90 transition-colors">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-12 flex justify-center">
+                        <div class="inline-flex rounded-md shadow-sm">
+                            <button
+                                class="!rounded-none rounded-l-lg px-4 py-2 border border-gray-300 bg-white text-sm font-medium hover:bg-gray-50">
+                                Previous
+                            </button>
+                            <button
+                                class="px-4 py-2 border-t border-b border-gray-300 bg-primary text-white text-sm font-medium">
+                                1
+                            </button>
+                            <button
+                                class="px-4 py-2 border-t border-b border-gray-300 bg-white text-sm font-medium hover:bg-gray-50">
+                                2
+                            </button>
+                            <button
+                                class="px-4 py-2 border-t border-b border-gray-300 bg-white text-sm font-medium hover:bg-gray-50">
+                                3
+                            </button>
+                            <button
+                                class="!rounded-none rounded-r-lg px-4 py-2 border border-gray-300 bg-white text-sm font-medium hover:bg-gray-50">
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-primary text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="font-playfair text-xl mb-4">Brand Town</h3>
+                    <p class="text-white/80">Premium cotton clothing for the modern woman.</p>
+                </div>
+                <div>
+                    <h3 class="font-playfair text-xl mb-4">Quick Links</h3>
+                    <div class="space-y-2">
+                        <a href="https://readdy.ai/home/bb998fe7-57be-4d0a-90c0-e2d0e2dd8023/b9c095d7-40e7-453f-9faa-8ba87bed70e2"
+                            data-readdy="true" class="block text-white/80 hover:text-white">Home</a>
+                        <a href="#" class="block text-white/80 hover:text-white">Shop</a>
+                        <a href="#" class="block text-white/80 hover:text-white">About</a>
+                        <a href="#" class="block text-white/80 hover:text-white">Contact</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-playfair text-xl mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center hover:text-[#D4B36D]">
+                            <i class="ri-instagram-line text-xl"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center hover:text-[#D4B36D]">
+                            <i class="ri-facebook-line text-xl"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center hover:text-[#D4B36D]">
+                            <i class="ri-twitter-line text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/20 mt-8 pt-8 text-center text-white/60">
+                <p>© 2025 Brand Town. Designed by Sky Nexus</p>
+            </div>
+        </div>
+    </footer>
+    <script id="navigation">
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('nav');
+            const mobileMenuBtn = nav.querySelector('button');
+            const mobileMenu = document.createElement('div');
+            mobileMenu.className = 'md:hidden fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300';
+            mobileMenu.innerHTML = `
+<div class="p-4">
+<div class="flex justify-end">
+<button class="w-10 h-10 flex items-center justify-center">
+<i class="ri-close-line text-xl"></i>
+</button>
+</div>
+<div class="flex flex-col space-y-4 mt-8">
+<a href="https://readdy.ai/home/bb998fe7-57be-4d0a-90c0-e2d0e2dd8023/b9c095d7-40e7-453f-9faa-8ba87bed70e2" data-readdy="true" class="text-gray-700 hover:text-primary px-4 py-2">Home</a>
+<a href="#" class="text-primary px-4 py-2">Shop</a>
+<a href="#" class="text-gray-700 hover:text-primary px-4 py-2">About</a>
+<a href="#" class="text-gray-700 hover:text-primary px-4 py-2">Contact</a>
+</div>
+</div>
+`;
+            document.body.appendChild(mobileMenu);
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('translate-x-full');
+            });
+            mobileMenu.querySelector('button').addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 0) {
+                    nav.classList.add('shadow-md');
+                } else {
+                    nav.classList.remove('shadow-md');
+                }
+            });
+        });
+    </script>
+    <script id="filters">
+        document.addEventListener('DOMContentLoaded', function () {
+            const radioInputs = document.querySelectorAll('input[type="radio"][name="category"]');
+            radioInputs.forEach(input => {
+                input.addEventListener('change', function () {
+                    const checkedSpans = document.querySelectorAll('input[type="radio"][name="category"] + span span');
+                    checkedSpans.forEach(span => span.classList.add('hidden'));
+                    if (this.checked) {
+                        this.nextElementSibling.querySelector('span').classList.remove('hidden');
+                    }
+                });
+            });
+            const clearFiltersBtn = document.querySelector('button:contains("Clear Filters")');
+            if (clearFiltersBtn) {
+                clearFiltersBtn.addEventListener('click', function () {
+                    document.querySelector('input[type="radio"][value="all"]').checked = true;
+                    document.querySelector('input[type="range"]').value = 250;
+                    document.querySelectorAll('input[type="radio"][name="size"]').forEach(input => input.checked = false);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
